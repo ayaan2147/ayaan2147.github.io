@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayaan Shaikh | B.Tech CSE Student Portfolio</title>
+    <meta name="description" content="Personal portfolio of Ayaan Shaikh, 3rd-Semester B.Tech Computer Science and Engineering student interested in Python, Cybersecurity, and practical programming projects.">
+    <meta name="author" content="Ayaan Shaikh">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           DESIGN SYSTEM & VARIABLES
+           ========================================================================== */
+        :root {
+            --bg-dark: #090d16;
+            --bg-card: rgba(21, 29, 46, 0.7);
+            --bg-card-hover: rgba(30, 41, 65, 0.85);
+            --bg-nav: rgba(9, 13, 22, 0.85);
+            
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(56, 189, 248, 0.3);
+            
+            --primary: #38bdf8;        /* Sky Blue */
+            --primary-glow: rgba(56, 189, 248, 0.25);
+            --secondary: #10b981;      /* Emerald Green */
+            --accent: #a855f7;         /* Cyber Purple */
+            
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-dim: #64748b;
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-code: 'Fira Code', monospace;
+            
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            
+            --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* ==========================================================================
+           BASE & RESET
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Background Effects */
+        .ambient-glow-1 {
+            position: fixed;
+            top: -10%;
+            left: 15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(0,0,0,0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .ambient-glow-2 {
+            position: fixed;
+            top: 40%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.08) 0%, rgba(0,0,0,0) 70%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        .grid-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px;
+            z-index: -1;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--text-main);
+        }
+
+        .section-title {
+            font-size: 2.25rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .section-title i {
+            color: var(--primary);
+            font-size: 1.8rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 48px;
+            max-width: 650px;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #38bdf8 0%, #10b981 50%, #a855f7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.825rem;
+            font-family: var(--font-code);
+            font-weight: 500;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+        }
+
+        /* ==========================================================================
+           NAVIGATION BAR
+           ========================================================================== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--bg-nav);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--text-main);
+        }
+
+        .logo-badge {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: var(--bg-dark);
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 0.95rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary) !important;
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: 600 !important;
+        }
+
+        .nav-btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark) !important;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.4rem;
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           HERO SECTION
+           ========================================================================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 130px;
+            padding-bottom: 60px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .hero-badge {
+            margin-bottom: 20px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--secondary);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.35rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            max-width: 560px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 28px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 0.975rem;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9, #10b981);
+            color: #040d1a;
+            border: none;
+            box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(14, 165, 233, 0.45);
+        }
+
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Terminal Card */
+        .terminal-card {
+            background: #0d1322;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .terminal-header {
+            background: #151d30;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .terminal-dots {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        .terminal-title {
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--text-dim);
+        }
+
+        .terminal-body {
+            padding: 24px;
+            font-family: var(--font-code);
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: #e2e8f0;
+        }
+
+        .code-keyword { color: #f472b6; }
+        .code-string { color: #a3e635; }
+        .code-var { color: #38bdf8; }
+        .code-comment { color: #64748b; font-style: italic; }
+
+        /* ==========================================================================
+           ABOUT ME SECTION
+           ========================================================================== */
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            backdrop-filter: blur(8px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .stat-box {
+            background: rgba(9, 13, 22, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            transition: var(--transition);
+        }
+
+        .stat-box:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+        }
+
+        .stat-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .stat-info h4 {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 2px;
+        }
+
+        .stat-info p {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        /* ==========================================================================
+           PROJECTS / LEARNING ACTIVITIES SECTION
+           ========================================================================== */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .project-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            background: var(--bg-card-hover);
+        }
+
+        .project-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .activity-num {
+            font-family: var(--font-code);
+            font-size: 0.8rem;
+            color: var(--secondary);
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+
+        .project-icon {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.975rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .project-tag {
+            font-family: var(--font-code);
+            font-size: 0.775rem;
+            color: var(--text-dim);
+            background: rgba(255, 255, 255, 0.04);
+            padding: 4px 10px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .repo-link-box {
+            background: rgba(9, 13, 22, 0.7);
+            border: 1px dashed rgba(56, 189, 248, 0.3);
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .repo-placeholder {
+            font-family: var(--font-code);
+            font-size: 0.825rem;
+            color: var(--primary);
+            word-break: break-all;
+        }
+
+        .repo-btn {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--primary);
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .repo-btn:hover {
+            background: var(--primary);
+            color: var(--bg-dark);
+        }
+
+        /* ==========================================================================
+           SKILLS SECTION
+           ========================================================================== */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            display: flex;
+            align-items: flex-start;
+            gap: 18px;
+            transition: var(--transition);
+        }
+
+        .skill-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-3px);
+            background: var(--bg-card-hover);
+        }
+
+        .skill-icon-wrapper {
+            width: 50px;
+            height: 50px;
+            border-radius: var(--radius-sm);
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .skill-info h3 {
+            font-size: 1.15rem;
+            margin-bottom: 6px;
+        }
+
+        .skill-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* ==========================================================================
+           CAREER / LEARNING GOAL SECTION
+           ========================================================================== */
+        .goal-card {
+            background: linear-gradient(135deg, rgba(21, 29, 46, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--secondary);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .goal-header {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 16px;
+        }
+
+        .goal-icon {
+            font-size: 1.8rem;
+            color: var(--secondary);
+        }
+
+        .goal-title {
+            font-size: 1.5rem;
+        }
+
+        .goal-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 24px;
+        }
+
+        .goal-highlights {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .goal-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--secondary);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           CONTACT SECTION
+           ========================================================================== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 28px;
+            text-align: center;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+        }
+
+        .contact-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 18px;
+        }
+
+        .contact-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-placeholder {
+            font-family: var(--font-code);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            word-break: break-all;
+            background: rgba(9, 13, 22, 0.6);
+            padding: 10px 14px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 12px;
+            display: block;
+        }
+
+        /* Notice Banner for user */
+        .setup-notice {
+            background: rgba(56, 189, 248, 0.08);
+            border: 1px solid rgba(56, 189, 248, 0.2);
+            border-radius: var(--radius-md);
+            padding: 20px;
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .setup-notice i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .setup-notice p {
+            font-size: 0.925rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           FOOTER
+           ========================================================================== */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            background: rgba(5, 8, 14, 0.9);
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-name {
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .footer-tagline {
+            color: var(--text-muted);
+            font-size: 0.925rem;
+        }
+
+        .footer-copy {
+            color: var(--text-dim);
+            font-size: 0.825rem;
+            margin-top: 12px;
+        }
+
+        /* ==========================================================================
+           RESPONSIVE DESIGN
+           ========================================================================== */
+        @media (max-width: 900px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-title {
+                font-size: 2.75rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            section {
+                padding: 70px 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #0d1322;
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .hero-title {
+                font-size: 2.25rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .about-card, .goal-card {
+                padding: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Ambient Visual Glow Backgrounds -->
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+    <div class="grid-pattern"></div>
+
+    <!-- NAVIGATION BAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <span class="logo-badge">AS</span>
+                <span>Ayaan Shaikh</span>
+            </a>
+            
+            <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle Navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Activities & Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#goal">Career Goal</a></li>
+                <li><a href="#contact" class="nav-btn">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="tag">
+                        <span class="status-dot"></span>
+                        3rd-Semester B.Tech CSE Student
+                    </span>
+                </div>
+                
+                <h1 class="hero-title">
+                    Hi, I'm <span class="text-gradient">Ayaan Shaikh</span>
+                </h1>
+                
+                <div class="hero-subtitle">
+                    <i class="fa-solid fa-code"></i> Computer Science & Engineering Student
+                </div>
+                
+                <p class="hero-description">
+                    Passionate about programming, cybersecurity, Python, and building practical technology projects. Continuously learning, practicing code, and improving my skills every day.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">
+                        View My Projects <i class="fa-solid fa-arrow-down"></i>
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fa-envelope fa-regular"></i> Get In Touch
+                    </a>
+                </div>
+            </div>
+
+            <!-- Terminal Snippet Card -->
+            <div class="terminal-card">
+                <div class="terminal-header">
+                    <div class="terminal-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </div>
+                    <div class="terminal-title">ayaan_portfolio.py</div>
+                </div>
+                <div class="terminal-body">
+                    <p><span class="code-comment"># Student Profile & Current Focus</span></p>
+                    <p><span class="code-var">student</span> = {</p>
+                    <p>&nbsp;&nbsp;<span class="code-string">"name"</span>: <span class="code-string">"Ayaan Shaikh"</span>,</p>
+                    <p>&nbsp;&nbsp;<span class="code-string">"degree"</span>: <span class="code-string">"B.Tech CSE (Semester 3)"</span>,</p>
+                    <p>&nbsp;&nbsp;<span class="code-string">"interests"</span>: [</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Python Programming"</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Cybersecurity Basics"</span>,</p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;<span class="code-string">"Git & Version Control"</span></p>
+                    <p>&nbsp;&nbsp;],</p>
+                    <p>&nbsp;&nbsp;<span class="code-string">"status"</span>: <span class="code-string">"Building & Learning Daily"</span></p>
+                    <p>}</p>
+                    <br>
+                    <p><span class="code-keyword">print</span>(f<span class="code-string">"Welcome to {student['name']}'s portfolio!"</span>)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT ME SECTION -->
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fa-solid fa-user-gear"></i> About Me
+            </h2>
+            <p class="section-subtitle">
+                A brief overview of who I am and my journey in Computer Science.
+            </p>
+
+            <div class="about-card">
+                <p class="about-text">
+                    I am Ayaan Shaikh, a dedicated 3rd-semester B.Tech Computer Science and Engineering student with a strong interest in programming, cybersecurity, Python, and technology. I enjoy exploring how software works under the hood and creating practical projects to solve real-world problems. As a motivated learner, I regularly practice coding and focus on building a strong foundation in computer science fundamentals.
+                </p>
+
+                <div class="about-stats">
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="stat-info">
+                            <h4>Education</h4>
+                            <p>B.Tech CSE (3rd Sem)</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <div class="stat-info">
+                            <h4>Primary Focus</h4>
+                            <p>Python & C/C++</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="stat-info">
+                            <h4>Interest Area</h4>
+                            <p>Cybersecurity</p>
+                        </div>
+                    </div>
+
+                    <div class="stat-box">
+                        <div class="stat-icon"><i class="fa-code-branch fa-solid"></i></div>
+                        <div class="stat-info">
+                            <h4>Version Control</h4>
+                            <p>Git & GitHub</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROJECTS / LEARNING ACTIVITIES SECTION -->
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fa-solid fa-folder-open"></i> My Projects & Learning Activities
+            </h2>
+            <p class="section-subtitle">
+                Practical activities and hands-on exercises completed as part of my computer science curriculum and self-learning.
+            </p>
+
+            <div class="projects-grid">
+                <!-- Activity 1 Card -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <span class="activity-num">Activity 1</span>
+                            <i class="fa-brands fa-github project-icon"></i>
+                        </div>
+                        <h3 class="project-title">Hello World in C</h3>
+                        <p class="project-desc">
+                            My initial C programming repository and official introduction to storing, managing, and sharing source code publicly using GitHub.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">C Programming</span>
+                            <span class="project-tag">GitHub</span>
+                            <span class="project-tag">Git Basics</span>
+                        </div>
+                    </div>
+                    <div class="repo-link-box">
+                        <span class="repo-placeholder">github.com/ayaan2147/hello-world-c</span>
+                        <a href="https://github.com/ayaan2147/hello-world-c" target="_blank" rel="noopener noreferrer" class="repo-btn">
+                            View Repo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Activity 2 Card -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <span class="activity-num">Activity 2</span>
+                            <i class="fa-solid fa-terminal project-icon"></i>
+                        </div>
+                        <h3 class="project-title">Line Editor in C</h3>
+                        <p class="project-desc">
+                            A custom line editor project built in C programming, demonstrating text buffer management, user input processing, and file operations.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">C Language</span>
+                            <span class="project-tag">Line Editor</span>
+                            <span class="project-tag">Data Structures</span>
+                        </div>
+                    </div>
+                    <div class="repo-link-box">
+                        <span class="repo-placeholder">github.com/ayaan2147/line-editer-c</span>
+                        <a href="https://github.com/ayaan2147/line-editer-c" target="_blank" rel="noopener noreferrer" class="repo-btn">
+                            View Repo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Activity 3 Card -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <span class="activity-num">Activity 3</span>
+                            <i class="fa-solid fa-brain project-icon"></i>
+                        </div>
+                        <h3 class="project-title">LeetCode Solutions</h3>
+                        <p class="project-desc">
+                            An organized repository storing my LeetCode problem solutions, demonstrating consistent programming practice and algorithmic problem solving.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">LeetCode</span>
+                            <span class="project-tag">Algorithms</span>
+                            <span class="project-tag">Problem Solving</span>
+                        </div>
+                    </div>
+                    <div class="repo-link-box">
+                        <span class="repo-placeholder">github.com/ayaan2147/leetcode-solutions</span>
+                        <a href="https://github.com/ayaan2147/leetcode-solutions" target="_blank" rel="noopener noreferrer" class="repo-btn">
+                            View Repo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Activity 4 Card -->
+                <div class="project-card">
+                    <div>
+                        <div class="project-header">
+                            <span class="activity-num">Activity 4</span>
+                            <i class="fa-solid fa-code project-icon"></i>
+                        </div>
+                        <h3 class="project-title">HackerRank Practice</h3>
+                        <p class="project-desc">
+                            Solutions to HackerRank coding challenges, showing steady progression in programming fundamentals, problem solving, and language mastery.
+                        </p>
+                        <div class="project-tags">
+                            <span class="project-tag">HackerRank</span>
+                            <span class="project-tag">Problem Solving</span>
+                            <span class="project-tag">Coding Practice</span>
+                        </div>
+                    </div>
+                    <div class="repo-link-box">
+                        <span class="repo-placeholder">github.com/ayaan2147/hacker-rank</span>
+                        <a href="https://github.com/ayaan2147/hacker-rank" target="_blank" rel="noopener noreferrer" class="repo-btn">
+                            View Repo <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fa-solid fa-layer-group"></i> Technical Skills
+            </h2>
+            <p class="section-subtitle">
+                Core technologies, languages, and tools I actively practice and learn.
+            </p>
+
+            <div class="skills-grid">
+                <!-- Skill 1 -->
+                <div class="skill-card">
+                    <div class="skill-icon-wrapper">
+                        <i class="fa-brands fa-python"></i>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Python</h3>
+                        <p>Core programming syntax, scripting, practical automation projects, and basic problem solving.</p>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="skill-card">
+                    <div class="skill-icon-wrapper">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <div class="skill-info">
+                        <h3>C / C++</h3>
+                        <p>Academic foundation in procedural programming, data structures, and memory management concepts.</p>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="skill-card">
+                    <div class="skill-icon-wrapper">
+                        <i class="fa-brands fa-git-alt"></i>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Git & GitHub</h3>
+                        <p>Repository management, version tracking, commit hygiene, and collaborative tools (GitLens/Live Share).</p>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="skill-card">
+                    <div class="skill-icon-wrapper">
+                        <i class="fa-solid fa-puzzle-piece"></i>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Problem Solving</h3>
+                        <p>Algorithm implementation and algorithmic practice through LeetCode and logic building exercises.</p>
+                    </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="skill-card">
+                    <div class="skill-icon-wrapper">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Basic Cybersecurity</h3>
+                        <p>Fundamental understanding of security concepts, safe coding practices, and network security basics.</p>
+                    </div>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="skill-card">
+                    <div class="skill-icon-wrapper">
+                        <i class="fa-solid fa-cubes"></i>
+                    </div>
+                    <div class="skill-info">
+                        <h3>Programming Fundamentals</h3>
+                        <p>Object-oriented concepts, computational thinking, file handling, and modular code design.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAREER / LEARNING GOAL SECTION -->
+    <section id="goal">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fa-solid fa-bullseye"></i> Career & Learning Goal
+            </h2>
+            <p class="section-subtitle">
+                My roadmap and aspirational direction as a Computer Science student.
+            </p>
+
+            <div class="goal-card">
+                <div class="goal-header">
+                    <i class="fa-solid fa-rocket goal-icon"></i>
+                    <h3 class="goal-title">Continuous Growth & Mastery</h3>
+                </div>
+                
+                <p class="goal-text">
+                    My objective as a B.Tech Computer Science and Engineering student is to continuously strengthen my programming fundamentals, analytical problem-solving abilities, and cybersecurity knowledge. Through hands-on coding, solving algorithmic challenges, and exploring practical technology projects, I aim to build a strong engineering foundation and eventually become a highly skilled professional in cybersecurity and software development.
+                </p>
+
+                <div class="goal-highlights">
+                    <div class="goal-pill">
+                        <i class="fa-solid fa-check"></i> Master Python & Cybersecurity Tools
+                    </div>
+                    <div class="goal-pill">
+                        <i class="fa-solid fa-check"></i> Expand LeetCode Problem Solving
+                    </div>
+                    <div class="goal-pill">
+                        <i class="fa-solid fa-check"></i> Build Practical Tech Projects
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <i class="fa-solid fa-paper-plane"></i> Contact Me
+            </h2>
+            <p class="section-subtitle">
+                Feel free to connect or reach out for academic collaboration and tech discussions.
+            </p>
+
+            <div class="contact-grid">
+                <!-- Email Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <h3>Email Address</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Reach out via email</p>
+                    <a href="mailto:ayaandell21@gmail.com" class="contact-placeholder" style="color: var(--primary); text-decoration: underline;">ayaandell21@gmail.com</a>
+                </div>
+
+                <!-- GitHub Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fa-brands fa-github"></i>
+                    </div>
+                    <h3>GitHub Profile</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">View my code repositories</p>
+                    <a href="https://github.com/ayaan2147" target="_blank" rel="noopener noreferrer" class="contact-placeholder" style="color: var(--primary); text-decoration: underline;">https://github.com/ayaan2147</a>
+                </div>
+
+                <!-- LinkedIn Card -->
+                <div class="contact-card">
+                    <div class="contact-icon">
+                        <i class="fa-brands fa-linkedin-in"></i>
+                    </div>
+                    <h3>LinkedIn Profile</h3>
+                    <p style="color: var(--text-muted); font-size: 0.9rem;">Connect professionally</p>
+                    <a href="https://www.linkedin.com/in/mohammed-ayaan-khalid-shaikh-a98536362/" target="_blank" rel="noopener noreferrer" class="contact-placeholder" style="color: var(--primary); text-decoration: underline; text-overflow: ellipsis; overflow: hidden;">linkedin.com/in/mohammed-ayaan-khalid-shaikh-a98536362</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-name">Ayaan Shaikh</div>
+            <div class="footer-tagline">Learning, building, and improving every day.</div>
+            <div class="footer-copy">
+                &copy; <span id="year"></span> Ayaan Shaikh • 3rd-Semester B.Tech CSE Student
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT -->
+    <script>
+        // Set dynamic current year in footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = mobileToggle.querySelector('i');
+                if (icon) {
+                    icon.classList.remove('fa-xmark');
+                    icon.classList.add('fa-bars');
+                }
+            });
+        });
+
+        // Highlight active nav section on scroll
+        const sections = document.querySelectorAll('section');
+        const navItems = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 150;
+                if (window.scrollY >= sectionTop) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
